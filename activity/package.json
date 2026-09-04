@@ -1,0 +1,14 @@
+{
+  "name": "jellyfin-discord-activity",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@discord/embedded-app-sdk": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,29 @@
+services:
+  activity:
+    build: ./activity
+    container_name: jellyfin-discord-activity
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+
+  server:
+    build: ./server
+    container_name: jellyfin-discord-activity-server
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: jellyfin-discord-activity-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://activity:5173
+    depends_on:
+      - activity
+
+  bot:
+    build: ./bot
+    container_name: jellyfin-discord-activity-bot
+    restart: unless-stopped
+    env_file:
+      - .envx
